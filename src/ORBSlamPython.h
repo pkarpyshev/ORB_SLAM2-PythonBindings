@@ -33,6 +33,8 @@ public:
     void shutdown();
     void activateSLAMTraking();
     void deactivateSLAMTraking();
+    void saveAtlasToFile(std::string atlasFile);
+    void loadAtlasFromFile(std::string atlasFile);
     boost::python::list getCurrentPoints() const;
     ORB_SLAM3::Tracking::eTrackingState getTrackingState() const;
     PyObject *getCameraMatrix() const;

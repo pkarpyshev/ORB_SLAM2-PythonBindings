@@ -78,6 +78,8 @@ BOOST_PYTHON_MODULE(orbslam3)
         .def("save_settings", &ORBSlamPython::saveSettings)
         .def("load_settings", &ORBSlamPython::loadSettings)
         .def("save_settings_file", &ORBSlamPython::saveSettingsFile)
+        .def("save_atlas_to_file", &ORBSlamPython::saveAtlasToFile)
+        .def("load_atlas_from_file", &ORBSlamPython::loadAtlasFromFile)
         .staticmethod("save_settings_file")
         .def("load_settings_file", &ORBSlamPython::loadSettingsFile)
         .staticmethod("load_settings_file");
@@ -126,6 +128,23 @@ void ORBSlamPython::reset()
     }
 }
 
+void ORBSlamPython::saveAtlasToFile(std::string atlasFile)
+{
+    if (!system)
+    {
+        return false;
+    }
+    return system ->saveAtlasToFile(atlasFile);
+}
+
+void ORBSlamPython::loadAtlasFromFile(std::string atlasFile)
+{
+    if (!system)
+    {
+        return false;
+    }
+    return system ->loadAtlasFromFile(atlasFile);
+}
 bool ORBSlamPython::loadAndProcessMono(std::string imageFile, double timestamp)
 {
     if (!system)
